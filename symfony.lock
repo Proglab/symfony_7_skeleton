@@ -40,6 +40,9 @@
             "./tests/bootstrap.php"
         ]
     },
+    "proglab/components-bundle": {
+        "version": "0.1.0"
+    },
     "symfony/apache-pack": {
         "version": "1.0",
         "recipe": {
