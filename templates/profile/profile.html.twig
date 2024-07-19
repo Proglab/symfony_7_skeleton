@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-5 mt-5">
+            {% for flash_error in app.flashes('verify_email_error') %}
+                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+            {% endfor %}
+
+            <h1>Your profile</h1>
+
+            {{ form_errors(profileForm) }}
+
+            {{ form_start(profileForm) }}
+                {{ form_row(profileForm.email) }}
+                <button type="submit" class="btn btn-primary">Update profile</button>
+            {{ form_end(profileForm) }}
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-5 mt-5">
+            <a href="{{ path('app_update_password') }}" class="mt-5">Change your password</a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -11,9 +11,10 @@
         "doctrine/doctrine-bundle": "^2.12",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^3.1",
+        "easycorp/easyadmin-bundle": "^4.10",
         "phpdocumentor/reflection-docblock": "^5.4",
         "phpstan/phpdoc-parser": "^1.29",
-        "proglab/components-bundle": "^0.1.0",
+        "proglab/component-bundle": "^1.0",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "7.1.*",
         "symfony/asset-mapper": "7.1.*",
@@ -34,6 +35,7 @@
         "symfony/process": "7.1.*",
         "symfony/property-access": "7.1.*",
         "symfony/property-info": "7.1.*",
+        "symfony/rate-limiter": "7.1.*",
         "symfony/runtime": "7.1.*",
         "symfony/security-bundle": "7.1.*",
         "symfony/serializer": "7.1.*",
@@ -47,6 +49,8 @@
         "symfony/validator": "7.1.*",
         "symfony/web-link": "7.1.*",
         "symfony/yaml": "7.1.*",
+        "symfonycasts/reset-password-bundle": "^1.22",
+        "symfonycasts/verify-email-bundle": "^1.17",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
     },
@@ -61,7 +65,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "bundles/Proglab/ComponentsBundle"
+            "url": "bundles/Proglab/ComponentBundle"
         }
     ],
     "autoload": {

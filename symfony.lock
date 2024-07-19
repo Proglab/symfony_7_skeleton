@@ -26,6 +26,15 @@
             "./migrations/.gitignore"
         ]
     },
+    "easycorp/easyadmin-bundle": {
+        "version": "4.10",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "3.0",
+            "ref": "b131e6cbfe1b898a508987851963fff485986285"
+        }
+    },
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {
@@ -40,8 +49,18 @@
             "./tests/bootstrap.php"
         ]
     },
-    "proglab/components-bundle": {
-        "version": "0.1.0"
+    "proglab/component-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "https://github.com/Proglab/component-bundle-recipe",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "7405f3af1312d1f9121afed4dddef636c6c7ff10"
+        },
+        "files": [
+            "./config/packages/proglab_components.yaml",
+            "./config/routes/proglab_components.yaml"
+        ]
     },
     "symfony/apache-pack": {
         "version": "1.0",
@@ -263,6 +282,27 @@
             "./templates/base.html.twig"
         ]
     },
+    "symfony/uid": {
+        "version": "7.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "7.0",
+            "ref": "0df5844274d871b37fc3816c57a768ffc60a43a5"
+        }
+    },
+    "symfony/ux-icons": {
+        "version": "2.18",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.17",
+            "ref": "803a3bbd5893f9584969ab8670290cdfb6a0a5b5"
+        },
+        "files": [
+            "./assets/icons/symfony.svg"
+        ]
+    },
     "symfony/ux-live-component": {
         "version": "2.17",
         "recipe": {
@@ -326,6 +366,21 @@
         "files": [
             "./config/packages/messenger.yaml"
         ]
+    },
+    "symfonycasts/reset-password-bundle": {
+        "version": "1.22",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "97c1627c0384534997ae1047b93be517ca16de43"
+        },
+        "files": [
+            "./config/packages/reset_password.yaml"
+        ]
+    },
+    "symfonycasts/verify-email-bundle": {
+        "version": "v1.17.0"
     },
     "twig/extra-bundle": {
         "version": "v3.10.0"

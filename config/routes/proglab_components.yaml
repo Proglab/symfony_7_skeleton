@@ -1,0 +1,2 @@
+proglab_component:
+    resource: '@ProglabComponentBundle/config/routes.yaml'

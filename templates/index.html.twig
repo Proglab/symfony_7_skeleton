@@ -1,5 +1,49 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-{{ component('proglab_alert', {text: 'Hello'}) }}
+
+    <div claa="container">
+        <div class="row">
+            <div class="col-12 p-5">
+                {{ component('proglab_alert', {text: 'Hello', type: 'dark', id:'Hello world', dismissible: true}) }}
+                <twig:proglab_alert text="Hello" type="dark" id="hello_world" dismissible>
+                </twig:proglab_alert>
+            </div>
+        </div>
+    </div>
+
+    <div claa="container">
+        <div class="row">
+            <div class="col-12 p-5">
+                <twig:proglab_accordion id="proglab">
+                    <twig:proglab_accordion_item id="proglab1" title="Title 1">
+                    </twig:proglab_accordion_item>
+                    <twig:proglab_accordion_item id="proglab2" title="Title 2" open>
+                    </twig:proglab_accordion_item>
+                    <twig:proglab_accordion_item id="proglab3" title="Title 3">
+                    </twig:proglab_accordion_item>
+                </twig:proglab_accordion>
+            </div>
+        </div>
+    </div>
+
+    <div claa="container">
+        <div class="row">
+            <div class="col-12 p-5">
+                {% set pages = [
+                    {
+                        'title' : 'Title of the link'
+                    }
+                ] %}
+
+
+                {{ component('proglab_breadcrumb', {
+                    pages : pages
+                }) }}
+
+                <twig:proglab_breadcrumb pages="{{ pages }}">
+                </twig:proglab_breadcrumb>
+            </div>
+        </div>
+    </div>
 {% endblock %}
