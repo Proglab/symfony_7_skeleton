@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Security;
 
 use App\Entity\User;
@@ -15,7 +17,7 @@ class EmailVerifier
     public function __construct(
         private VerifyEmailHelperInterface $verifyEmailHelper,
         private MailerInterface $mailer,
-        private EntityManagerInterface $entityManager
+        private EntityManagerInterface $entityManager,
     ) {
     }
 
@@ -25,12 +27,12 @@ class EmailVerifier
             $verifyEmailRouteName,
             (string) $user->getId(),
             $user->getEmail(),
-            ['id' => $user->getId()]
+            ['id' => $user->getId()],
         );
 
-        $context = $email->getContext();
-        $context['signedUrl'] = $signatureComponents->getSignedUrl();
-        $context['expiresAtMessageKey'] = $signatureComponents->getExpirationMessageKey();
+        $context                         = $email->getContext();
+        $context['signedUrl']            = $signatureComponents->getSignedUrl();
+        $context['expiresAtMessageKey']  = $signatureComponents->getExpirationMessageKey();
         $context['expiresAtMessageData'] = $signatureComponents->getExpirationMessageData();
 
         $email->context($context);

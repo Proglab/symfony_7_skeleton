@@ -1,8 +1,10 @@
 <?php
+
+declare(strict_types=1);
+
 namespace App\Security;
 
 use App\Entity\User as AppUser;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAccountStatusException;
 use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -11,11 +13,11 @@ class UserChecker implements UserCheckerInterface
 {
     public function checkPreAuth(UserInterface $user): void
     {
-        if (!$user instanceof AppUser) {
+        if (! $user instanceof AppUser) {
             return;
         }
 
-        if (!$user->isActive()) {
+        if (! $user->isActive()) {
             // the message passed to this exception is meant to be displayed to the user
             throw new CustomUserMessageAccountStatusException('Your account is blocked.');
         }
@@ -23,7 +25,7 @@ class UserChecker implements UserCheckerInterface
 
     public function checkPostAuth(UserInterface $user): void
     {
-        if (!$user instanceof AppUser) {
+        if (! $user instanceof AppUser) {
             return;
         }
     }

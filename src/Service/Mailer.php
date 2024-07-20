@@ -13,7 +13,7 @@ use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken;
 class Mailer
 {
     public function __construct(
-        private readonly TranslatorInterface $translator
+        private readonly TranslatorInterface $translator,
     ) {
     }
 
@@ -29,7 +29,6 @@ class Mailer
             ]);
     }
 
-
     public function getNewPasswordRequestMail(ResetPasswordToken $resetToken, User $user): TemplatedEmail
     {
         return (new TemplatedEmail())
@@ -39,7 +38,7 @@ class Mailer
             ->htmlTemplate('reset_password/email_new.html.twig')
             ->context([
                 'resetToken' => $resetToken,
-                'title' => 'Create your new password',
+                'title'      => 'Create your new password',
             ]);
     }
 
@@ -51,5 +50,4 @@ class Mailer
             ->subject('Please Confirm your Email')
             ->htmlTemplate('registration/confirmation_email.html.twig');
     }
-
 }
