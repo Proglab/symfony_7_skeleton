@@ -2,6 +2,7 @@
 
 namespace App\Tests;
 
+use App\Entity\ResetPasswordRequest;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -17,9 +18,13 @@ class LoginControllerTest extends WebTestCase
         $container = static::getContainer();
         $em = $container->get('doctrine.orm.entity_manager');
         $userRepository = $em->getRepository(User::class);
+        $resetPasswordRequestRepository = $em->getRepository(ResetPasswordRequest::class);
 
         // Remove any existing users from the test database
         foreach ($userRepository->findAll() as $user) {
+            $resetPasswordRequest = $resetPasswordRequestRepository->findOneBy(['user' => $user]);
+            if ($resetPasswordRequest)
+                $em->remove($resetPasswordRequest);
             $em->remove($user);
         }
 
@@ -43,7 +48,7 @@ class LoginControllerTest extends WebTestCase
         self::assertResponseIsSuccessful();
 
         $this->client->submitForm('Sign in', [
-            '_username' => 'doesNotExist@example.com',
+            '_username' => 'me@example.com',
             '_password' => 'password',
         ]);
 

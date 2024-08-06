@@ -25,7 +25,7 @@ security:
                 path: app_logout
                 target: app_index
             login_throttling:
-                max_attempts: 3          # per minute ...
+                max_attempts: 5          # per minute ...
                 interval: '15 minutes'
 
             remember_me:

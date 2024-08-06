@@ -2,6 +2,8 @@
 
 namespace App\Tests;
 
+use App\Entity\ResetPasswordRequest;
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -22,9 +24,14 @@ class RegistrationControllerTest extends WebTestCase
 
         /** @var EntityManager $em */
         $em = $container->get('doctrine')->getManager();
-        $this->userRepository = $container->get(UserRepository::class);
+        $this->userRepository = $em->getRepository(User::class);
+        $resetPasswordRequestRepository = $em->getRepository(ResetPasswordRequest::class);
 
+        // Remove any existing users from the test database
         foreach ($this->userRepository->findAll() as $user) {
+            $resetPasswordRequest = $resetPasswordRequestRepository->findOneBy(['user' => $user]);
+            if ($resetPasswordRequest)
+                $em->remove($resetPasswordRequest);
             $em->remove($user);
         }
 
@@ -45,7 +52,7 @@ class RegistrationControllerTest extends WebTestCase
         ]);
 
         // Ensure the response redirects after submitting the form, the user exists, and is not verified
-        // self::assertResponseRedirects('/');  @TODO: set the appropriate path that the user is redirected to.
+        self::assertResponseRedirects('/');
         self::assertCount(1, $this->userRepository->findAll());
         self::assertFalse(($user = $this->userRepository->findAll()[0])->isVerified());
 
@@ -54,7 +61,7 @@ class RegistrationControllerTest extends WebTestCase
         // self::assertQueuedEmailCount(1);
         self::assertEmailCount(1);
 
-        self::assertCount(1, $messages = $this->getMailerMessages());
+        self::assertCount(2, $messages = $this->getMailerMessages());
         self::assertEmailAddressContains($messages[0], 'from', 'no-reply@proglab.com');
         self::assertEmailAddressContains($messages[0], 'to', 'me@example.com');
         self::assertEmailTextBodyContains($messages[0], 'This link will expire in 1 hour.');
